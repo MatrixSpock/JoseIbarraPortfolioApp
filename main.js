@@ -39,11 +39,12 @@ renderer.render(scene, camera);
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
 
 
-//2. We need to define the material: Gives it color and texture.
+//2. We need to define the "Material": Gives it color and texture.
 //NOTE: Custom Shaders can be created with WebGL.
 //Note: Basic material don't require a light source. Other materials will.
 // Wireframe = True - gives you a look at the its actual geometry. 
 const material = new THREE.MeshNormalMaterial({ color: 0xff6347, wireframe: true });
+// const material = new THREE.MeshStandardMaterial({ color: 0xff6347, wireframe: true });
 
 //3rd - Create a mesh by combinding the geometry with the material. 
 const torus = new THREE.Mesh(geometry, material);
@@ -57,6 +58,14 @@ function animate(){
   requestAnimationFrame(animate);
   //Re-render the scene by calling the render method. Repaints the screen to update the UI. (Similar to a Game Loop)
   renderer.render(scene, camera);
+
+  //Every Shape that we create has different properties, rotation, position, and scale. 
+  //If we change these properties inside the loop the shape will animate. 
+  torus.rotation.x += 0.01;
+  torus.rotation.y += 0.005;
+  torus.rotation.z += 0.01;
+
 };
 
 animate();
+
